@@ -48,17 +48,23 @@
   .row button:hover, .row button:focus-visible {
   background: url('images/photo.jpg') center / cover no-repeat;
   filter: brightness(0.85); /* hover effect, since the hover color no longer applies */
-}
+  }
+  .outlined {
+  color: #fff;
+  -webkit-text-stroke: 2px #000;
+  paint-order: stroke fill;
+  }
+
 </style>
 </head>
 <body>
  
   <!-- ===== ROW: copy everything from here to "END ROW" and paste below to add a row ===== -->
   <div class="row">
-    <button type="button" style="background-image: url('tokyo_tea.jpg')" onclick="location.href='tokyo_tea'" >Tokyo Tea</button>
-    <button type="button" style="background-image: url('images/cat.jpg')" onclick="location.href='#'">Gummy Shark</button>
-    <button type="button" style="background-image: url('images/cat.jpg')" onclick="location.href='jolly_rancher'">Jolly Rancher</button>
-    <button type="button" style="background-image: url('images/cat.jpg')" onclick="location.href='#'">Beergarita</button>
+    <button type="button" class="outlined" style="background-image: url('tokyo_tea.jpg')" onclick="location.href='tokyo_tea'" >Tokyo Tea</button>
+    <button type="button" class="outlined" style="background-image: url('images/cat.jpg')" onclick="location.href='#'">Gummy Shark</button>
+    <button type="button" class="outlined" style="background-image: url('images/cat.jpg')" onclick="location.href='jolly_rancher'">Jolly Rancher</button>
+    <button type="button" class="outlined" style="background-image: url('images/cat.jpg')" onclick="location.href='#'">Beergarita</button>
   </div>
   <!-- ===== END ROW ===== -->
  
