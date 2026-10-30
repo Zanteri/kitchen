@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tokyo Tea</title>
+<style>
+  :root {
+    --bg: #faf7f2;
+    --card: #ffffff;
+    --text: #2b2622;
+    --muted: #6f655c;
+    --accent: #c2410c;
+    --line: #e7dfd4;
+    --placeholder: #efe8dc;
+    color-scheme: light dark;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1b1815;
+      --card: #25211d;
+      --text: #f1ebe3;
+      --muted: #a89d91;
+      --accent: #fb923c;
+      --line: #3a342e;
+      --placeholder: #322d28;
+    }
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); height: 100%; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font: 18px/1.6 Georgia, "Times New Roman", serif;
+    padding: 16px;
+  }
+
+  /* ===== LANDSCAPE / TABLET: two panels side by side ===== */
+  main {
+    height: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .left, .right { overflow-y: auto; min-height: 0; }
+  .left { border-right: 1px solid var(--line); }
+  .pad { padding: 8px 28px 28px; }
+  .right { padding: 28px 36px 32px; }
+
+  /* ===== IMAGE SPOT ===== */
+  .hero {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    background: var(--placeholder);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font: 500 1rem system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  h1 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); line-height: 1.2; }
+  .meta {
+    margin-top: 6px;
+    color: var(--muted);
+    font: 0.9rem system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  h2 {
+    margin: 24px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+    font: 700 0.85rem system-ui, -apple-system, "Segoe UI", sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .right h2 { margin-top: 28px; }
+
+  /* ===== INGREDIENTS ===== */
+  .ingredients { list-style: none; }
+  .ingredients li {
+    display: flex;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .ingredients li:last-child { border-bottom: none; }
+  .amount {
+    flex: 0 0 105px;
+    font-weight: 700;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  /* ===== INSTRUCTIONS ===== */
+  .steps { list-style: none; counter-reset: step; }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 0 0 18px 48px;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--card);
+    font: 700 0.95rem/32px system-ui, -apple-system, "Segoe UI", sans-serif;
+    text-align: center;
+  }
+
+  /* ===== PORTRAIT / PHONE: stack into one column ===== */
+  @media (max-width: 800px), (orientation: portrait) {
+    html, body { height: auto; }
+    main { height: auto; display: block; }
+    .left, .right { overflow: visible; }
+    .left { border-right: none; }
+    .hero { aspect-ratio: 16 / 9; }
+    .pad { padding-top: 0; }
+    .right { padding: 8px 28px 32px; }
+    body { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+  <main>
+
+    <!-- LEFT PANEL: image + ingredients -->
+    <section class="left">
+      <img src="tokyo_tea.jpg" alt="A green drink in a tall glass.">
+
+      <div class="pad">
+        <h2>Ingredients</h2>
+        <ul class="ingredients">
+          <li><span class="amount">1/2 cups</span><span>Lemonade</span></li>
+          <li><span class="amount">6 oz</span><span>Coconut Rum</span></li>
+          <li><span class="amount">5 oz</span><span>Lemon Vodka</span></li>
+          <li><span class="amount">3 oz</span><span>Blue Curaçao</span></li>
+          <li><span class="amount">1/2 cup</span><span>Gummy Sharks</span></li>
+          <li><span class="amount">6 oz</span><span>Lemon Seltzer</span></li>
+          <li><span class="amount">Grenadine</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL: title + instructions -->
+    <section class="right">
+      <h1>Shark Attack</h1>
+      <p class="meta">Stir | 6 servings</p>
+
+      <h2>Instructions</h2>
+      <ol class="steps">
+        <li>Combine the lemonade, rum, vodka and curaçao in a pitcher. Add ice and the gummy sharks, then pour in the seltzer.</li>
+        <li>Divide the drink among glasses. Drizzle some grenadine into each.</li>
+      </ol>
+    </section>
+
+  </main>
+</body>
+</html>
